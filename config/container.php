@@ -1,7 +1,11 @@
 <?php
 
+use App\ExpressiveAuraConfig;
 use Aura\Di\ContainerBuilder;
 use Aura\Di\ContainerConfigInterface;
+
+require_once __DIR__ . '/ExpressiveAuraConfig.php';
+require_once __DIR__ . '/ExpressiveAuraDelegatorFactory.php';
 
 // Load configuration
 $config = require __DIR__ . '/config.php';
@@ -29,19 +33,10 @@ foreach ($configClasses as $configClass) {
     $configs[] = $configClass;
 }
 
-// Inject config
-$container->set('config', $config);
-
-// Inject factories
-foreach ($config['dependencies']['factories'] as $name => $object) {
-    $container->set($object, $container->lazyNew($object));
-    $container->set($name, $container->lazyGetCall($object, '__invoke', $container));
-}
-
-// Inject invokables
-foreach ($config['dependencies']['invokables'] as $name => $object) {
-    $container->set($name, $container->lazyNew($object));
-}
+// ExpressiveConfig
+$configClass = new ExpressiveAuraConfig(is_array($config) ? $config : []);
+$configClass->define($container);
+$configs[] = $configClass;
 
 $container->lock();
 
