@@ -3,6 +3,7 @@ namespace App\Config;
 
 use Aura\Di\Container;
 use Aura\Di\ContainerConfigInterface;
+use Zend\Expressive\Router\Route;
 
 class Common implements ContainerConfigInterface
 {
@@ -30,15 +31,15 @@ class Common implements ContainerConfigInterface
     public function modify(Container $di)
     {
         $router = $di->get('Zend\Expressive\Router\RouterInterface');
-        $router->addRoute(new \Zend\Expressive\Router\Route('/asset/{vendor}/{package}/{file:.*}', 'Hkt\Psr7Asset\AssetAction', ['GET'], 'hkt/psr7-asset'));
-        // $route = new \Zend\Expressive\Router\Route('/asset/{vendor}/{package}/{file}', 'Hkt\Psr7Asset\AssetAction', ['GET'], 'hkt/psr7-asset');
-        // $route->setOptions([
-        //     'tokens' => [
-        //         'file' => '(.*)'
-        //     ]
-        // ]);
-        // $router->addRoute($route);
-        $router->addRoute(new \Zend\Expressive\Router\Route('/welcome', 'Hkt\Psr7AssetExample\Action\WelcomeAction', ['GET'], 'hkt/psr7-asset-example:welcome'));
+        // $router->addRoute(new Route('/asset/{vendor}/{package}/{file:.*}', $di->get('Hkt\Psr7Asset\AssetAction'), ['GET'], 'hkt/psr7-asset'));
+        $route = new Route('/asset/{vendor}/{package}/{file}', $di->get('Hkt\Psr7Asset\AssetAction'), ['GET'], 'hkt/psr7-asset');
+        $route->setOptions([
+            'tokens' => [
+                'file' => '(.*)'
+            ]
+        ]);
+        $router->addRoute($route);
+        $router->addRoute(new Route('/welcome', 'Hkt\Psr7AssetExample\Action\WelcomeAction', ['GET'], 'hkt/psr7-asset-example:welcome'));
         // Try modifying the asset to a different url
         // $assetLocator = $di->get('Hkt\Psr7Asset\AssetLocator');
         // $rootPath = dirname(dirname(dirname(__DIR__)));
