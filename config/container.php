@@ -14,6 +14,7 @@ $config = require __DIR__ . '/config.php';
 $configClasses = [
     Hkt\Psr7AssetExample\Config\Common::class,
     App\Config\Common::class,
+    new ExpressiveAuraConfig(is_array($config) ? $config : []),
 ];
 
 // Build container
@@ -32,11 +33,6 @@ foreach ($configClasses as $configClass) {
     $configClass->define($container);
     $configs[] = $configClass;
 }
-
-// ExpressiveConfig
-$configClass = new ExpressiveAuraConfig(is_array($config) ? $config : []);
-$configClass->define($container);
-$configs[] = $configClass;
 
 $container->lock();
 
