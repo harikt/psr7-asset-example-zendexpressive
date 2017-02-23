@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "020cc55d2278bf98060e33c48de3928e",
+    "content-hash": "be91391f35f5810c4a28fd87baeae413",
     "packages": [
         {
             "name": "aura/di",
@@ -249,7 +249,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/harikt/psr7-asset-example",
-                "reference": "abcba5805868dac7b1a4cfaefca87019c1b6a66d"
+                "reference": "7df89623dcd0eae05f7ac2c7bbc6de5fdde0ee5b"
             },
             "require": {
                 "hkt/psr7-asset": "1.*",
@@ -272,7 +272,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2017-02-21 18:53:21"
+            "time": "2017-02-22 06:18:02"
         },
         {
             "name": "http-interop/http-factory",
@@ -996,17 +996,11 @@
         },
         {
             "name": "zendframework/zend-expressive",
-            "version": "dev-develop",
+            "version": "dev-hotfix/dispatch-lazy-load",
             "source": {
                 "type": "git",
-                "url": "https://github.com/zendframework/zend-expressive.git",
-                "reference": "697bb1cc501357a37a961f2252eee72a43f20341"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-expressive/zipball/697bb1cc501357a37a961f2252eee72a43f20341",
-                "reference": "697bb1cc501357a37a961f2252eee72a43f20341",
-                "shasum": ""
+                "url": "https://github.com/weierophinney/zend-expressive",
+                "reference": "a14315c04713d5463920c9e0853857f5f46de829"
             },
             "require": {
                 "fig/http-message-util": "^1.1",
@@ -1055,7 +1049,39 @@
                     "Zend\\Expressive\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "ZendTest\\Expressive\\": "test/"
+                },
+                "files": [
+                    "test/class_exists.php"
+                ]
+            },
+            "scripts": {
+                "check": [
+                    "@license-check",
+                    "@cs-check",
+                    "@test"
+                ],
+                "upload-coverage": [
+                    "coveralls -v"
+                ],
+                "cs-check": [
+                    "phpcs"
+                ],
+                "cs-fix": [
+                    "phpcbf"
+                ],
+                "test": [
+                    "phpunit --colors=always"
+                ],
+                "test-coverage": [
+                    "phpunit --coverage-clover clover.xml"
+                ],
+                "license-check": [
+                    "vendor/bin/docheader check src/ test/"
+                ]
+            },
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1066,7 +1092,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2017-02-15 22:33:22"
+            "time": "2017-02-22 22:02:09"
         },
         {
             "name": "zendframework/zend-expressive-aurarouter",
@@ -2938,7 +2964,14 @@
             "time": "2017-01-09T23:34:49+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "2.0.0",
+            "alias_normalized": "2.0.0.0",
+            "version": "dev-hotfix/dispatch-lazy-load",
+            "package": "zendframework/zend-expressive"
+        }
+    ],
     "minimum-stability": "stable",
     "stability-flags": {
         "roave/security-advisories": 20,

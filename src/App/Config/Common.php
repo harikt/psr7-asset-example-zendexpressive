@@ -32,14 +32,14 @@ class Common implements ContainerConfigInterface
     {
         $router = $di->get('Zend\Expressive\Router\RouterInterface');
         // $router->addRoute(new Route('/asset/{vendor}/{package}/{file:.*}', $di->get('Hkt\Psr7Asset\AssetAction'), ['GET'], 'hkt/psr7-asset'));
-        $route = new Route('/asset/{vendor}/{package}/{file}', $di->get('Hkt\Psr7Asset\AssetAction'), ['GET'], 'hkt/psr7-asset');
+        $route = new Route('/asset/{vendor}/{package}/{file}', 'Hkt\Psr7Asset\AssetAction', ['GET'], 'hkt/psr7-asset');
         $route->setOptions([
             'tokens' => [
                 'file' => '(.*)'
             ]
         ]);
         $router->addRoute($route);
-        $router->addRoute(new Route('/', $di->get('Hkt\Psr7AssetExample\Action\WelcomeAction'), ['GET'], 'hkt/psr7-asset-example:welcome'));
+        $router->addRoute(new Route('/', $di->lazyGet('Hkt\Psr7AssetExample\Action\WelcomeAction'), ['GET'], 'hkt/psr7-asset-example:welcome'));
         // Try modifying the asset to a different url
         // $assetLocator = $di->get('Hkt\Psr7Asset\AssetLocator');
         // $rootPath = dirname(dirname(dirname(__DIR__)));
