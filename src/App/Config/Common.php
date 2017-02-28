@@ -39,7 +39,7 @@ class Common implements ContainerConfigInterface
             ]
         ]);
         $router->addRoute($route);
-        $router->addRoute(new Route('/', $di->lazyGet('Hkt\Psr7AssetExample\Action\WelcomeAction'), ['GET'], 'hkt/psr7-asset-example:welcome'));
+        $router->addRoute(new Route('/', 'Hkt\Psr7AssetExample\Action\WelcomeAction', ['GET'], 'hkt/psr7-asset-example:welcome'));
         // Try modifying the asset to a different url
         // $assetLocator = $di->get('Hkt\Psr7Asset\AssetLocator');
         // $rootPath = dirname(dirname(dirname(__DIR__)));
