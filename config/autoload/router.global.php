@@ -7,8 +7,8 @@ use Zend\Expressive\Router\RouterInterface;
 return [
     'dependencies' => [
         'invokables' => [
-            // RouterInterface::class => AuraRouter::class,
-            RouterInterface::class => FastRouteRouter::class,
+            RouterInterface::class => AuraRouter::class,
+            // RouterInterface::class => FastRouteRouter::class,
         ],
     ],
 ];

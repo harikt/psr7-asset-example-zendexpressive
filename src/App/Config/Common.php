@@ -31,14 +31,14 @@ class Common implements ContainerConfigInterface
     public function modify(Container $di)
     {
         $router = $di->get('Zend\Expressive\Router\RouterInterface');
-        $router->addRoute(new Route('/asset/{vendor}/{package}/{file:.*}', 'Hkt\Psr7Asset\AssetAction', ['GET'], 'hkt/psr7-asset'));
-        // $route = new Route('/asset/{vendor}/{package}/{file}', 'Hkt\Psr7Asset\AssetAction', ['GET'], 'hkt/psr7-asset');
-        // $route->setOptions([
-        //     'tokens' => [
-        //         'file' => '(.*)'
-        //     ]
-        // ]);
-        // $router->addRoute($route);
+        // $router->addRoute(new Route('/asset/{vendor}/{package}/{file:.*}', 'Hkt\Psr7Asset\AssetAction', ['GET'], 'hkt/psr7-asset'));
+        $route = new Route('/asset/{vendor}/{package}/{file}', 'Hkt\Psr7Asset\AssetAction', ['GET'], 'hkt/psr7-asset');
+        $route->setOptions([
+            'tokens' => [
+                'file' => '(.*)'
+            ]
+        ]);
+        $router->addRoute($route);
         $router->addRoute(new Route('/', 'Hkt\Psr7AssetExample\Middleware\Welcome', ['GET'], 'hkt/psr7-asset-example:welcome'));
         // Try modifying the asset to a different url
         // $assetLocator = $di->get('Hkt\Psr7Asset\AssetLocator');
