@@ -14,7 +14,6 @@ $config = require __DIR__ . '/config.php';
 $builder = new ContainerBuilder();
 
 return $builder->newConfiguredInstance([
-    new ExpressiveAuraConfig(is_array($config) ? $config : []),
-    Hkt\Psr7AssetExample\Config\Common::class,
+    new ExpressiveAuraConfig(is_array($config) ? $config : []),    
     App\Config\Common::class,
 ]);
