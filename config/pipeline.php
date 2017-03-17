@@ -39,9 +39,6 @@ $app->pipe(ImplicitHeadMiddleware::class);
 $app->pipe(ImplicitOptionsMiddleware::class);
 $app->pipe(UrlHelperMiddleware::class);
 
-// hkt-psr7-asset-example pipe
-$app->pipe(Hkt\Psr7AssetExample\Middleware\Asset::class);
-
 // Add more middleware here that needs to introspect the routing results; this
 // might include:
 //

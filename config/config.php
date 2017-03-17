@@ -12,6 +12,7 @@ $cacheConfig = [
 
 $aggregator = new ConfigAggregator([
     Hkt\Psr7AssetExample\ConfigProvider::class,
+    Hkt\Psr7AssetCache\ConfigProvider::class,
     // Include cache configuration
     new ArrayProvider($cacheConfig),
 
